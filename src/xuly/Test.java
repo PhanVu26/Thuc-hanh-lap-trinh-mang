@@ -1,43 +1,105 @@
 package xuly;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-public class Test {
+class Test{
 
 	public static void main(String[] args) {
-		ReadAndWriteExcelFile readWriteFile = new ReadAndWriteExcelFile();
-		
-		XSSFWorkbook workbook;
-		try {
-			workbook = new XSSFWorkbook("D:/java/Thuc-hanh-lap-trinh-mang/input-data/Danh-sach-can-bo-coi-thi.xlsx");
-			XSSFSheet sheet = workbook.getSheetAt(0);
-			//System.out.println(sheet);
-			XSSFSheet sheet1 = workbook.getSheetAt(1);
-			//System.out.println(sheet1);
-			List<GiamThi> listGiamThi = readWriteFile.getListGiamThi(sheet);
-			List<PhongThi> listPhongThi = readWriteFile.getListPhongThi(sheet1);
-			int c = 0;
-			for (PhongThi pt : listPhongThi) {
-				System.out.println(pt.getPhongThi());
-				c ++;
-				if(c==10) break;
-			}
-			c = 0;
-			for (GiamThi pt : listGiamThi) {
-				System.out.println(pt.getHoTen());
-				c ++;
-				if(c==10) break;
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		List<Integer> vertexs = new ArrayList<>();
+		for(int i = 1; i <= 6; i++) {
+			vertexs.add(i);
 		}
-		
-		
+		int len = vertexs.size();
+		Graph g1 = new Graph(vertexs.size()); 
+		  for(int i = 0; i < len; i++) {
+			  for(int j = i; j< len; j++) {
+				  
+			  }
+		  }
+//        g1.addEdge(0, 1); 
+//        g1.addEdge(0, 2); 
+//        g1.addEdge(1, 2); 
+//        g1.addEdge(1, 3); 
+//        g1.addEdge(2, 3); 
+//        g1.addEdge(3, 4); 
+        System.out.println("Coloring of graph 1"); 
+        g1.greedyColoring(); 
 	}
+}
 
+class Graph{
+	private int V;   // No. of vertices 
+    private LinkedList<Integer> adj[]; //Adjacency List 
+  
+    //Constructor 
+    Graph(int v) 
+    { 
+        V = v; 
+        adj = new LinkedList[v]; 
+        for (int i=0; i<v; ++i) 
+            adj[i] = new LinkedList(); 
+    } 
+  
+    //Function to add an edge into the graph 
+    void addEdge(int v,int w) 
+    { 
+        adj[v].add(w); 
+        adj[w].add(v); //Graph is undirected 
+    } 
+  
+    // Assigns colors (starting from 0) to all vertices and 
+    // prints the assignment of colors 
+    void greedyColoring() 
+    { 
+        int result[] = new int[V]; 
+  
+        // Initialize all vertices as unassigned 
+        Arrays.fill(result, -1); 
+  
+        // Assign the first color to first vertex 
+        result[0]  = 0; 
+  
+        // A temporary array to store the available colors. False 
+        // value of available[cr] would mean that the color cr is 
+        // assigned to one of its adjacent vertices 
+        boolean available[] = new boolean[V]; 
+          
+        // Initially, all colors are available 
+        Arrays.fill(available, true); 
+  
+        // Assign colors to remaining V-1 vertices 
+        for (int u = 1; u < V; u++) 
+        { 
+            // Process all adjacent vertices and flag their colors 
+            // as unavailable 
+            Iterator<Integer> it = adj[u].iterator() ; 
+            while (it.hasNext()) 
+            { 
+                int i = it.next(); 
+                if (result[i] != -1) 
+                    available[result[i]] = false; 
+            } 
+  
+            // Find the first available color 
+            int cr; 
+            for (cr = 0; cr < V; cr++){ 
+                if (available[cr]) 
+                    break; 
+            } 
+  
+            result[u] = cr; // Assign the found color 
+  
+            // Reset the values back to true for the next iteration 
+            Arrays.fill(available, true); 
+        } 
+  
+        // print the result 
+        for (int u = 0; u < V; u++) 
+            System.out.println("Vertex " + u + " --->  Color "
+                                + result[u]); 
+    }
 }

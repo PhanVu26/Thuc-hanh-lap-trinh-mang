@@ -1,6 +1,8 @@
 package xuly;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GiamThi implements Serializable{
 	String maGV;
@@ -9,6 +11,8 @@ public class GiamThi implements Serializable{
 	String donVi;
 	String chucVu;
 	String phongThi;
+	List<PhongThi> phongDaCoi = new ArrayList<>();
+	List<GiamThi> listGT = new ArrayList<>();
 	
 	public GiamThi(String maGV, String hoTen, String ngaySinh, String donVi, String chucVu, String phongThi) {
 		super();
@@ -20,6 +24,22 @@ public class GiamThi implements Serializable{
 		this.phongThi = phongThi;
 	}
 	
+	public List<PhongThi> getPhongDaCoi() {
+		return phongDaCoi;
+	}
+
+	public void setPhongDaCoi(List<PhongThi> listPT) {
+		this.phongDaCoi = listPT;
+	}
+
+	public List<GiamThi> getListGT() {
+		return listGT;
+	}
+
+	public void setListGT(List<GiamThi> listGT) {
+		this.listGT = listGT;
+	}
+
 	public String getChucVu() {
 		return chucVu;
 	}

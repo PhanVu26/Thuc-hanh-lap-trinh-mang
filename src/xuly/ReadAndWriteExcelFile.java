@@ -24,7 +24,7 @@ public class ReadAndWriteExcelFile {
 			} else if (cellID.getCellType() == CellType.STRING) {
 				maGV = cellID.getStringCellValue();
 			}
-			System.out.println(maGV);
+			//System.out.println(maGV);
 			cellID = row.getCell(2);
 			if (cellID.getCellType() == CellType.NUMERIC) {
 				hoTen = fmt.formatCellValue(cellID);
