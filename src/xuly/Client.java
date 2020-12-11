@@ -31,6 +31,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.ss.usermodel.BorderStyle;
@@ -96,7 +97,7 @@ public class Client extends JFrame implements ActionListener {
 		table = new JTable();
 		table.setBounds(0, 60, 800, 540);
 		sp = new JScrollPane(table);
-		sp.setBounds(0, 60, 800, 542);
+		sp.setBounds(10, 60, 974, 542);
 		table.setModel(tableModel);
 		getContentPane().add(sp);
 		path = new JTextField();
@@ -106,20 +107,20 @@ public class Client extends JFrame implements ActionListener {
 	public void getWidget() {
 		this.setTitle("Phân chia giám thị coi thi");
 		this.setLocation(200, 20);
-		this.setSize(810, 700);
+		this.setSize(1000, 700);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		this.setResizable(false);
-		path.setBounds(10, 613 , 300, 29);
-		btnChooseFile.setBounds(310, 613, 100, 29);
-		btnSendFile.setBounds(684, 613, 100, 29);
+		path.setBounds(10, 613 , 628, 29);
+		btnChooseFile.setBounds(648, 613, 100, 29);
+		btnSendFile.setBounds(851, 613, 100, 29);
 		getContentPane().add(btnChooseFile);
 		getContentPane().add(btnSendFile);
 		getContentPane().add(path);
 		
 		lblDanhSchPhn = new JLabel("PHẦN MỀM PHÂN CÔNG GIÁM THỊ COI THI");
 		lblDanhSchPhn.setFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 15));
-		lblDanhSchPhn.setBounds(236, 11, 345, 38);
+		lblDanhSchPhn.setBounds(299, 11, 345, 38);
 		getContentPane().add(lblDanhSchPhn);
 		this.setVisible(true);
 
@@ -131,7 +132,7 @@ public class Client extends JFrame implements ActionListener {
 			tableModel.getDataVector().removeAllElements();
 			String[] columnNames = { "STT", "Mã Giáo viên", "Họ và tên", "Ngày Sinh", "Đơn vị", "Phòng thi", "Chức vụ"}; 
 			tableModel.setColumnIdentifiers(columnNames);
-
+			
 			
 			int tt = 1;
 			for (GiamThi gt :listGT ) {

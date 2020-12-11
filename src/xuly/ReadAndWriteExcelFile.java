@@ -389,10 +389,10 @@ XSSFWorkbook workbook = new XSSFWorkbook();
 			Cell cellSign21 = rowSign21.createCell(6);
 			cellSign21.setCellValue("Phan Văn Vũ");
 			
-			System.out.println("print");
+			System.out.println("Đang ghi file");
 		}
 		
-		System.out.println("completed");
+		System.out.println("Hoàn thành");
 			
 		File fileout = new File ("./output-data/phanCong.xlsx");
 		try {

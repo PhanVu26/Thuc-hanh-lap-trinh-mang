@@ -92,27 +92,36 @@ public class Server {
 		
 		int viTriGiamThiChuaXet = listLichThi.size() + 2;
 		int index = 0;
+		int soGTConLai = listGiamThi.size() - viTriGiamThiChuaXet;
+		int soLuongPhongGiamSat = 1;
+		if(soGTConLai >= listPhongThi.size()) {
+			soLuongPhongGiamSat = 1;
+		}else {
+			soLuongPhongGiamSat = listPhongThi.size()/soGTConLai;
+		}
 		for(int i = viTriGiamThiChuaXet ; i < listGiamThi.size(); i++) {
-			int soGTConLai = listGiamThi.size() - viTriGiamThiChuaXet;
-			System.out.println(soGTConLai);
-			int soPhong = soGTConLai / listPhongThi.size();
-			System.out.println(soPhong);
-			GiamThi gt1 = listGiamThi.get(i);
-			gt1.setChucVu("Giám Thị hành lan");
-			
 			String phongGiamSat = "";
 			int count = 0;
-			for(int j = index; j < listPhongThi.size(); j++) {
+			int j = 0;
+			for(j = index; j < listPhongThi.size(); j++) {
 				phongGiamSat += listPhongThi.get(j).getPhongThi() + ",";
-				index = j;
-				if(index == listPhongThi.size()) {
+				if(index == listPhongThi.size()-1) {
 					phongGiamSat = "";
 				}
 				count ++;
-				if(count == soPhong) {
+				index = j+1;
+				if(count == soLuongPhongGiamSat) {
 					break;
 				}
 			}
+
+			GiamThi gt1 = listGiamThi.get(i);
+			
+			if(j < listPhongThi.size()) {
+				gt1.setChucVu("Giám Thị hành lan");
+			}
+
+			
 			gt1.setPhongThi(phongGiamSat);
 			listLichThi.add(gt1);
 		}
@@ -122,7 +131,6 @@ public class Server {
 	public boolean ktPhongDaXemThi(GiamThi gt, PhongThi phongThi) {
 		for (PhongThi pt : gt.getPhongDaCoi()) {
 			if(pt.getPhongThi().equals(phongThi.getPhongThi())) {
-				System.out.println("aaaaa");
 				return true;
 			}
 		}		
