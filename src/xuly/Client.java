@@ -162,8 +162,11 @@ public class Client extends JFrame implements ActionListener {
 			Object result = ois.readObject();
 			
 			List<GiamThi> listPT =  (ArrayList<GiamThi>) result;
+			ReadAndWriteExcelFile readWriteFile = new ReadAndWriteExcelFile();
 			//getFile(listPT);
+			
 			UpdateTable(listPT);
+			readWriteFile.writeFile(listPT);
 		} catch (FileNotFoundException e) {
 			System.out.println("can not read this file !");
 			e.printStackTrace();
